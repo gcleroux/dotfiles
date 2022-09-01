@@ -1,0 +1,8 @@
+-- Keymaps similar to VS Code
+-- vim.g["VM_maps"] = {}
+-- vim.g["VM_maps"]['Find Under']         = '<C-d>'
+-- vim.g["VM_maps"]['Find Subword Under'] = '<C-d>'
+-- vim.g["VM_maps"]["Select l"]           = '<S-Right>'
+-- vim.g["VM_maps"]["Select h"]           = '<S-Left>'
+-- vim.g["VM_maps"]["Select Cursor Down"] = '<M-C-Down>'
+-- vim.g["VM_maps"]["Select Cursor Up"]   = '<M-C-Up>'
