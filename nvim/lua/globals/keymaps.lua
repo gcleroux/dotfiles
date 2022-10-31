@@ -3,12 +3,12 @@ vim.g.mapleader = " "
 
 -- Functional wrapper for mapping custom keybindings
 function keymap(mode, lhs, rhs)
-    local options = {noremap = true, silent = true}
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 ------------------------------
---    General keybindings   -- 
+--    General keybindings   --
 ------------------------------
 
 -- Normal --
@@ -46,7 +46,6 @@ keymap("x", "K", ":move '<-2<CR>gv-gv")
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 
-
 -- Visual --
 -- Word manipulation
 keymap("i", "<C-BS>", "<C-W>")
@@ -66,9 +65,12 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l")
 keymap("n", "<leader>`", ":ToggleTermToggleAll<CR>")
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>")
+keymap(
+	"n",
+	"<leader>f",
+	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
+)
 keymap("n", "<leader>t", "<cmd>Telescope live_grep<cr>")
-
 
 -- Toggle file tree
 keymap("n", "<leader>\\", ":NvimTreeToggle<CR>")
@@ -81,3 +83,4 @@ keymap("n", "<C-d>", ":call vm#commands#find_under(0, 1, 0, 1)<CR>")
 -- Formatting documents
 keymap("n", "<leader>F", ":Format<CR>")
 
+keymap("n", "<leader>doc", ":Neogen<CR>")

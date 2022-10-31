@@ -1,13 +1,11 @@
 -- Setup global config
-require "globals"
-
--- Plugins config
-require "plugins"
+require("globals")
 
 -- Set up the colorscheme
-require "themes.onedark"
+require("themes.nordfox")
+
+-- Plugins config
+require("plugins")
 
 -- Set up LSP
-require "lsp"
-
-require('lspconfig').julials.setup{}
+require("lsp")
