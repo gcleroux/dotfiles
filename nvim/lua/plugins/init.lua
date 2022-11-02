@@ -1,30 +1,31 @@
 -- plugins
-require "plugins.packer"
+require("plugins.packer")
 
 -- cmp config
-require "plugins.cmp"
+require("plugins.cmp")
 
 -- Telescope
-require "plugins.telescope"
+require("plugins.telescope")
 
 -- tree-sitter config
-require "plugins.treesitter"
+require("plugins.treesitter")
 
 -- Lualine config
-require "plugins.lualine"
+require("plugins.lualine")
 
 -- Tree config
-require "plugins.nvim-tree"
+require("plugins.nvim-tree")
 
-require "plugins.autopairs"
+require("plugins.autopairs")
 
-require "plugins.nvim-comment"
+require("plugins.nvim-comment")
 
-require "plugins.vim-visual-cursor"
+require("plugins.vim-visual-cursor")
 
-require "plugins.bufferline"
+require("plugins.bufferline")
 
-require "plugins.toggleterm"
+require("plugins.toggleterm")
 
 -- Docstrings config
-require "plugins.neogen"
+require("plugins.neogen")
+

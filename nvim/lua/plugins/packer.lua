@@ -40,38 +40,41 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	-- My plugins here
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-	use("windwp/nvim-autopairs")
-	use("kyazdani42/nvim-web-devicons")
-	use("akinsho/bufferline.nvim")
-	use("moll/vim-bbye")
-	use("akinsho/toggleterm.nvim")
+	use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
+	use("windwp/nvim-autopairs") -- Make pairs of brackets, parantheses, etc. automatically
+	use("kyazdani42/nvim-web-devicons") -- Nice dev icons used by many plugins
+	use("akinsho/bufferline.nvim") -- Lua bufferline
+	use("moll/vim-bbye") -- Closing windows without messing up the layout
+	use("akinsho/toggleterm.nvim") -- Not sure I will keep the toggle terminal
 
 	-- Tree-sitter
 	use({
-		"nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter", -- Neovim LSP server
 		run = ":TSUpdate",
 	})
 	use("p00f/nvim-ts-rainbow")
 
 	-- Docstrings generator
 	use({
-		"danymat/neogen",
+		"danymat/neogen", -- Generate docstrings
 		requires = { "nvim-treesitter/nvim-treesitter" },
 		-- Uncomment next line if you want to follow only stable versions
 		-- tag = "stable"
 	})
 
 	-- Color schemes
-	use("navarasu/onedark.nvim")
-	use("EdenEast/nightfox.nvim")
+	use("navarasu/onedark.nvim") -- Atom OneDark theme
+	use("EdenEast/nightfox.nvim") -- Nightfox theme
+
+	-- Git plugins
+	use("mhinz/vim-signify") -- Git annotations in gutter
+	use("kdheepak/lazygit.nvim") -- LazyGit neovim integration
 
 	-- Using sudo from user session
-	use("lambdalisue/suda.vim")
+	use("lambdalisue/suda.vim") -- Open/write files as root
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -96,13 +99,13 @@ return packer.startup(function(use)
 
 	-- Lua line
 	use({
-		"nvim-lualine/lualine.nvim",
+		"nvim-lualine/lualine.nvim", -- Keeps open files in top menu bar
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
 	-- Nvim tree
 	use({
-		"kyazdani42/nvim-tree.lua",
+		"kyazdani42/nvim-tree.lua", -- File manager tree in nvim
 		requires = {
 			"kyazdani42/nvim-web-devicons", -- optional, for file icons
 		},
@@ -110,14 +113,14 @@ return packer.startup(function(use)
 	})
 
 	-- Comments plugin to allow vscode like line commenting
-	use("terrortylor/nvim-comment")
+	use("terrortylor/nvim-comment") -- IDE like line commenting with shortcut
 
 	-- Atom like multiple cursors
-	use("mg979/vim-visual-multi")
+	use("mg979/vim-visual-multi") -- Atom multi cursor in vim
 
 	-- install without yarn or npm
 	use({
-		"iamcco/markdown-preview.nvim",
+		"iamcco/markdown-preview.nvim", -- Preview markdown files in web browser
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,

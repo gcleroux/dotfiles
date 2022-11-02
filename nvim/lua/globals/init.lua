@@ -1,5 +1,5 @@
 -- Global config options
-require "globals.options"
+require("globals.options")
 
 -- Keymaps options
-require "globals.keymaps"
+require("globals.keymaps")

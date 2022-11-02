@@ -26,7 +26,7 @@ lsp_installer.on_server_ready(function(server)
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
-    -- Julia config broken, should fix later
+	-- Julia config broken, should fix later
 	-- if server.name == "julials" then
 	-- 	local julia_opts = require("lsp.settings.julials")
 	-- 	opts = vim.tbl_deep_extend("force", julia_opts, opts)

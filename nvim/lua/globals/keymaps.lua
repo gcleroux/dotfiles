@@ -84,3 +84,6 @@ keymap("n", "<C-d>", ":call vm#commands#find_under(0, 1, 0, 1)<CR>")
 keymap("n", "<leader>F", ":Format<CR>")
 
 keymap("n", "<leader>doc", ":Neogen<CR>")
+
+-- LazyGit
+keymap("n", "<leader>gg", ":LazyGit<CR>")

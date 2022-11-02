@@ -5,7 +5,12 @@ local o = vim.o
 -- Set the leader key
 vim.g.mapleader = ";"
 
+-- Disabling netrw at init (strong advised by nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Global options
+o.relativenumber = true
 o.clipboard = "unnamedplus"
 o.cmdheight = 2
 o.fileencoding = "utf-8"
