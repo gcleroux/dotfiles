@@ -13,10 +13,6 @@ end
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<leader>h", "<C-w>h")
-keymap("n", "<leader>j", "<C-w>j")
-keymap("n", "<leader>k", "<C-w>k")
-keymap("n", "<leader>l", "<C-w>l")
 keymap("n", "<leader>Q", ":bufdo bwipeout<CR>")
 
 -- Resize with arrows
