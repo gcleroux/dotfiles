@@ -97,6 +97,9 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
 
+	-- CSV highlighting
+	use("mechatroner/rainbow_csv")
+
 	-- Lua line
 	use({
 		"nvim-lualine/lualine.nvim", -- Keeps open files in top menu bar

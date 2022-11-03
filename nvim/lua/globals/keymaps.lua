@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 
 -- Functional wrapper for mapping custom keybindings
 function keymap(mode, lhs, rhs)
-	local options = { noremap = true, silent = true }
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 ------------------------------
@@ -66,9 +66,9 @@ keymap("n", "<leader>`", ":ToggleTermToggleAll<CR>")
 
 -- Telescope
 keymap(
-	"n",
-	"<leader>f",
-	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
+    "n",
+    "<leader>f",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
 )
 keymap("n", "<leader>t", "<cmd>Telescope live_grep<cr>")
 
@@ -91,4 +91,5 @@ keymap("n", "<leader>gg", ":LazyGit<CR>")
 -- Gitsigns
 keymap("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
 keymap("n", "<leader>hp", ":Gitsigns preview_hunk<CR>")
-keymap("n", "<leader>hb", ":Gitsigns stage_hunk<CR>")
+keymap("n", "<leader>hn", ":Gitsigns next_hunk<CR>")
+keymap("n", "<leader>hb", ":Gitsigns prev_hunk<CR>")
