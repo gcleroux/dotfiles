@@ -87,3 +87,8 @@ keymap("n", "<leader>doc", ":Neogen<CR>")
 
 -- LazyGit
 keymap("n", "<leader>gg", ":LazyGit<CR>")
+
+-- Gitsigns
+keymap("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+keymap("n", "<leader>hp", ":Gitsigns preview_hunk<CR>")
+keymap("n", "<leader>hb", ":Gitsigns stage_hunk<CR>")

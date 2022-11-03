@@ -21,13 +21,17 @@ null_ls.setup({
 
 		-- Markdown formatting
 		formatting.markdown_toc,
-		formatting.markdownlint,
+
+		-- Prettier
+		formatting.prettier,
+
+		-- formatting.markdownlint,
 
 		-- JSON formatting
-		formatting.jq,
+		-- formatting.jq,
 
 		-- YAML formatting
-		formatting.yamlfmt,
+		-- formatting.yamlfmt,
 
 		-- C/C++/CS/CUDA formatting
 		formatting.clang_format,

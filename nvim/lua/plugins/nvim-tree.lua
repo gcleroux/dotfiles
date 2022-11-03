@@ -9,6 +9,7 @@ require("nvim-tree").setup({
 				{ key = "C", action = "cd" },
 				{ key = "v", action = "vsplit" },
 				{ key = ".", action = "toggle_dotfiles" },
+				{ key = "i", action = "toggle_ignored" },
 			},
 		},
 	},
@@ -17,5 +18,8 @@ require("nvim-tree").setup({
 	},
 	filters = {
 		dotfiles = true,
+	},
+	git = {
+		ignore = false, -- Show ignored files
 	},
 })

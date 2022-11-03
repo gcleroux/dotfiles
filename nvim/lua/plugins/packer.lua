@@ -70,7 +70,7 @@ return packer.startup(function(use)
 	use("EdenEast/nightfox.nvim") -- Nightfox theme
 
 	-- Git plugins
-	use("mhinz/vim-signify") -- Git annotations in gutter
+	use("lewis6991/gitsigns.nvim") -- Git annotations in the gutter
 	use("kdheepak/lazygit.nvim") -- LazyGit neovim integration
 
 	-- Using sudo from user session
@@ -85,7 +85,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- LSP completions
 
 	-- snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
+	use("L3MON4D3/LuaSnip") -- snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	-- LSP

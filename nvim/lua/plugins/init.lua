@@ -29,3 +29,4 @@ require("plugins.toggleterm")
 -- Docstrings config
 require("plugins.neogen")
 
+require("plugins.gitsigns")
