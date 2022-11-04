@@ -24,7 +24,7 @@ require("plugins.vim-visual-cursor")
 
 require("plugins.bufferline")
 
-require("plugins.toggleterm")
+-- require("plugins.toggleterm")
 
 -- Docstrings config
 require("plugins.neogen")
