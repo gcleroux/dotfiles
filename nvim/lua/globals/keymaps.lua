@@ -1,11 +1,13 @@
--- Setting the leader key
+-- Setting the leader key to spacebar
 vim.g.mapleader = " "
 
 -- Functional wrapper for mapping custom keybindings
-function keymap(mode, lhs, rhs)
+local function keymap(mode, lhs, rhs)
     local options = { noremap = true, silent = true }
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
+-- TODO: Refactor this file into a directory with 1 file per extension keymaps
 
 ------------------------------
 --    General keybindings   --
@@ -13,6 +15,7 @@ end
 
 -- Normal --
 -- Better window navigation
+keymap("n", "<leader>q", ":Bdelete<CR>")
 keymap("n", "<leader>Q", ":bufdo bwipeout<CR>")
 
 -- Resize with arrows
@@ -53,12 +56,12 @@ keymap("i", "<C-k>", "<Up>")
 keymap("i", "<C-l>", "<Right>")
 
 -- Terminal --
--- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h")
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j")
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k")
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l")
-keymap("n", "<leader>`", ":ToggleTermToggleAll<CR>")
+-- Better terminal navigation (Not using this plugin anymore, maybe should be removed at some point)
+-- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h")
+-- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j")
+-- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k")
+-- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l")
+-- keymap("n", "<leader>`", ":ToggleTermToggleAll<CR>")
 
 -- Telescope
 keymap(
@@ -76,9 +79,7 @@ keymap("n", "<leader>/", ":CommentToggle<CR>")
 keymap("v", "<leader>/", ":'<,'>CommentToggle<CR>")
 keymap("n", "<C-d>", ":call vm#commands#find_under(0, 1, 0, 1)<CR>")
 
--- Formatting documents
-keymap("n", "<leader>F", ":Format<CR>")
-
+-- Generate docstring
 keymap("n", "<leader>doc", ":Neogen<CR>")
 
 -- LSP keymaps
@@ -94,7 +95,6 @@ keymap("n", "<leader>dg", "<cmd>lua vim.diagnostic.open_float()<CR>")
 keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
 keymap("n", "gl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>')
 keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
-keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
 
 -- LazyGit
 keymap("n", "<leader>gg", ":LazyGit<CR>")
