@@ -81,6 +81,21 @@ keymap("n", "<leader>F", ":Format<CR>")
 
 keymap("n", "<leader>doc", ":Neogen<CR>")
 
+-- LSP keymaps
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+keymap("n", "<leader>dg", "<cmd>lua vim.diagnostic.open_float()<CR>")
+keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
+keymap("n", "gl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>')
+keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
+keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+
 -- LazyGit
 keymap("n", "<leader>gg", ":LazyGit<CR>")
 
