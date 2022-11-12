@@ -4,11 +4,6 @@ ROOT_UID=0
 
 #COLORS
 CDEF=" \033[0m"      # default color
-CCIN=" \033[0;36m"   # info color
-CGSC=" \033[0;32m"   # success color
-CRER=" \033[0;31m"   # error color
-CWAR=" \033[0;33m"   # waring color
-b_CDEF=" \033[1;37m" # bold default color
 b_CCIN=" \033[1;36m" # bold info color
 b_CGSC=" \033[1;32m" # bold success color
 b_CRER=" \033[1;31m" # bold error color
@@ -74,7 +69,7 @@ Do you wish to install neovim's add-ons? [Y/n] " yn
 case $yn in
 # Default to yes
 [Yy]* | "")
-	cd ./add-ons
+	cd ./add-ons || exit 1
 	bash ./install.sh
 	;;
 *)
