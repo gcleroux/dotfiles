@@ -26,6 +26,11 @@ lsp_installer.on_server_ready(function(server)
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 
+    -- if server.name == "bashls" then
+    --     local bashls_opts = {}
+    --     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
+    -- end
+
     -- Julia config broken, should fix later
     -- if server.name == "julials" then
     -- 	local julia_opts = require("lsp.settings.julials")
