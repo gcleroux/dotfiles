@@ -1,0 +1,14 @@
+# Custom zsh aliases
+# Kitty aliases
+alias icat='kitty +kitten icat'
+alias kssh='kitty +kitten ssh'
+alias julia='~/.julia/julia-1.6.7/bin/julia'
+alias vim='nvim'
+
+# Replace ls with exa
+alias ls='exa'
+alias ll='exa -alh'
+alias tree='exa --tree'
+
+# Replace cat with bat (exec is called batcat in debian)
+alias cat='batcat -p'

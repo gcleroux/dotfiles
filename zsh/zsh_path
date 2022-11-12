@@ -1,0 +1,7 @@
+# Adding sbin directories to allow syntax highlighting to work correctly
+SBIN=/usr/local/sbin:/usr/sbin:/sbin
+
+# Adding neovim to $PATH since it's installed in user space
+NVIM=$HOME/Applications/Git/dotfiles/nvim/bin
+
+export PATH=$PATH:$SBIN:$NVIM
