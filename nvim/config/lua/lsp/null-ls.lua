@@ -14,7 +14,7 @@ null_ls.setup({
         -- Python formatting
         formatting.isort,
         formatting.black.with({ extra_args = { "--fast" } }),
-        diagnostics.flake8,
+        diagnostics.flake8.with({ extra_args = { "--max-line-length", "119" } }),
 
         -- Lua formatting
         formatting.stylua,
