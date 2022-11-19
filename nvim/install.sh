@@ -3,11 +3,11 @@
 ROOT_UID=0
 
 #COLORS
-CDEF=" \033[0m"      # default color
-b_CCIN=" \033[1;36m" # bold info color
-b_CGSC=" \033[1;32m" # bold success color
-b_CRER=" \033[1;31m" # bold error color
-b_CWAR=" \033[1;33m" # bold warning color
+CDEF="\033[0m"      # default color
+b_CCIN="\033[1;36m" # bold info color
+b_CGSC="\033[1;32m" # bold success color
+b_CRER="\033[1;31m" # bold error color
+b_CWAR="\033[1;33m" # bold warning color
 
 # echo like ...  with  flag type  and display message  colors
 prompt() {
