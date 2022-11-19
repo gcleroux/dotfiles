@@ -1,9 +1,9 @@
-local status_ok, configs = pcall(require, "neogen")
+local status_ok, neogen = pcall(require, "neogen")
 if not status_ok then
     return
 end
 
-require("neogen").setup({
+neogen.setup({
     snippet_engine = "luasnip",
     enabled = true,
     languages = {
