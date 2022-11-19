@@ -108,5 +108,3 @@ source ~/.zsh_aliases
 # Activating starship prompt
 eval "$(starship init zsh)"
 
-# Activating miniconda
-eval "$(/home/guillaume/miniconda3/bin/conda shell.zsh hook)"
