@@ -30,3 +30,5 @@ require("plugins.bufferline")
 require("plugins.neogen")
 
 require("plugins.gitsigns")
+
+require("plugins.nvim-surround")

@@ -116,6 +116,12 @@ return packer.startup(function(use)
         tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
 
+    -- Nvim surroung for easier bracket management
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    })
+
     -- Comments plugin to allow vscode like line commenting
     use("terrortylor/nvim-comment") -- IDE like line commenting with shortcut
 
