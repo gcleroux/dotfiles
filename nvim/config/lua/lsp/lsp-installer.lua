@@ -26,18 +26,12 @@ lsp_installer.on_server_ready(function(server)
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 
+    -- TODO: Install bashls when upgrading to debian bookworm [:LspInstall bashls]
+    -- BASHLS is not working currently on debian 11 since it needs node >= 14, and debian 11 ships with node 12.
     -- if server.name == "bashls" then
-    --     local bashls_opts = {}
-    --     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
+    --     require("lspconfig").bashls.setup({})
     -- end
 
-    -- Julia config broken, should fix later
-    -- if server.name == "julials" then
-    -- 	local julia_opts = require("lsp.settings.julials")
-    -- 	opts = vim.tbl_deep_extend("force", julia_opts, opts)
-    -- end
-
-    -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
 end)
