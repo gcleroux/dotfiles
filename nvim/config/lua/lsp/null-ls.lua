@@ -11,34 +11,41 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
     debug = true,
     sources = {
+        -- Editor wide linter/formatting
+        diagnostics.codespell,
+        diagnostics.proselint,
+
         -- Python formatting
         formatting.isort,
-        formatting.black.with({ extra_args = { "--fast" } }),
-        diagnostics.flake8.with({ extra_args = { "--max-line-length", "119" } }),
+        formatting.black.with({ extra_args = { "--fast", "--line-length", "88" } }),
+        diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),
+        diagnostics.pylint,
 
         -- Lua formatting
         formatting.stylua,
+        diagnostics.selene,
+
+        -- C/C++/CS/CUDA formatting
+        formatting.clang_format,
+        diagnostics.cpplint,
 
         -- Markdown formatting
         formatting.markdown_toc,
-
-        -- Prettier
-        formatting.prettier,
+        formatting.markdownlint,
+        formatting.cbfmt,
 
         -- Shell formatting
         formatting.shfmt,
         diagnostics.shellcheck,
 
-        -- formatting.markdownlint,
-
         -- JSON formatting
-        -- formatting.jq,
+        formatting.jq,
+
+        -- Dockerfile
+        diagnostics.hadolint,
 
         -- YAML formatting
-        -- formatting.yamlfmt,
-
-        -- C/C++/CS/CUDA formatting
-        formatting.clang_format,
+        formatting.yamlfmt,
     },
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)

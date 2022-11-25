@@ -44,12 +44,15 @@ return packer.startup(function(use)
 
     use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
     use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
-    use("windwp/nvim-autopairs") -- Make pairs of brackets, parantheses, etc. automatically
+    use("windwp/nvim-autopairs") -- Make pairs of brackets, parentheses, etc. automatically
     use("kyazdani42/nvim-web-devicons") -- Nice dev icons used by many plugins
     use("akinsho/bufferline.nvim") -- Lua bufferline
     use("moll/vim-bbye") -- Closing windows without messing up the layout
 
     -- use("akinsho/toggleterm.nvim") -- Not sure I will keep the toggle terminal
+
+    -- Debugger
+    use("mfussenegger/nvim-dap")
 
     -- Tree-sitter
     use({
@@ -90,9 +93,12 @@ return packer.startup(function(use)
     use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
     -- LSP
-    use("neovim/nvim-lspconfig") -- enable LSP
-    use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+    use("williamboman/mason.nvim") -- LSP plugin manager
+    use("williamboman/mason-lspconfig.nvim") -- Integrates Mason with Nvim built-in LSP
     use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+    use("jayp0521/mason-null-ls.nvim") -- Integrates Mason with Null-ls
+    use("neovim/nvim-lspconfig") -- enable LSP
+    use("b0o/schemastore.nvim") -- jsonls schemas for LSP server
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
