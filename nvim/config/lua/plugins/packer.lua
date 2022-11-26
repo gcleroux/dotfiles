@@ -67,7 +67,7 @@ return packer.startup(function(use)
     -- Color schemes
     use("navarasu/onedark.nvim") -- Atom OneDark theme
     use("EdenEast/nightfox.nvim") -- Nightfox theme
-    use("bluz71/vim-moonfly-colors")
+    use("rmehri01/onenord.nvim")
 
     -- Git plugins
     use("lewis6991/gitsigns.nvim") -- Git annotations in the gutter
