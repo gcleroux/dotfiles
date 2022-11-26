@@ -12,21 +12,21 @@ b_CWAR="\033[1;33m" # bold warning color
 # echo like ...  with  flag type  and display message  colors
 prompt() {
     case ${1} in
-        "-s" | "--success")
-            echo -e "${b_CGSC}${@/-s/}${CDEF}"
-            ;; # print success message
-        "-e" | "--error")
-            echo -e "${b_CRER}${@/-e/}${CDEF}"
-            ;; # print error message
-        "-w" | "--warning")
-            echo -e "${b_CWAR}${@/-w/}${CDEF}"
-            ;; # print warning message
-        "-i" | "--info")
-            echo -e "${b_CCIN}${@/-i/}${CDEF}"
-            ;; # print info message
-        *)
-            echo -e "$@"
-            ;;
+    "-s" | "--success")
+        echo -e "${b_CGSC}${@/-s/}${CDEF}"
+        ;; # print success message
+    "-e" | "--error")
+        echo -e "${b_CRER}${@/-e/}${CDEF}"
+        ;; # print error message
+    "-w" | "--warning")
+        echo -e "${b_CWAR}${@/-w/}${CDEF}"
+        ;; # print warning message
+    "-i" | "--info")
+        echo -e "${b_CCIN}${@/-i/}${CDEF}"
+        ;; # print info message
+    *)
+        echo -e "$@"
+        ;;
     esac
 }
 
@@ -56,7 +56,7 @@ fi
 sudo apt update -y
 
 # Installing build deps
-sudo apt install -y ripgrep curl
+sudo apt install -y ripgrep curl luarocks
 
 # Installing node 18.x
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
@@ -70,14 +70,14 @@ read -rp "
 Do you wish to install neovim's add-ons? [Y/n] " yn
 
 case $yn in
-        # Default to yes
-    [Yy]* | "")
-        cd ./add-ons || exit 1
-        bash ./install.sh
-        ;;
-    *)
-        prompt -w "\nNeovim add-ons will not be installed.\n"
-        ;;
+# Default to yes
+[Yy]* | "")
+    cd ./add-ons || exit 1
+    bash ./install.sh
+    ;;
+*)
+    prompt -w "\nNeovim add-ons will not be installed.\n"
+    ;;
 esac
 
 prompt -s "Neovim was installed sucessfully!"

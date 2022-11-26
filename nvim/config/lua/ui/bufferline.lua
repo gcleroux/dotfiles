@@ -121,17 +121,17 @@ bufferline.setup({
         duplicate_selected = {
             fg = { attribute = "fg", highlight = "TabLineSel" },
             bg = { attribute = "bg", highlight = "TabLineSel" },
-            italic = True,
+            italic = true,
         },
         duplicate_visible = {
             fg = { attribute = "fg", highlight = "TabLine" },
             bg = { attribute = "bg", highlight = "TabLine" },
-            italic = True,
+            italic = true,
         },
         duplicate = {
             fg = { attribute = "fg", highlight = "TabLine" },
             bg = { attribute = "bg", highlight = "TabLine" },
-            italic = True,
+            italic = true,
         },
 
         modified = {

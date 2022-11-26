@@ -23,7 +23,7 @@ null_ls.setup({
 
         -- Lua formatting
         formatting.stylua,
-        diagnostics.selene,
+        diagnostics.luacheck,
 
         -- C/C++/CS/CUDA formatting
         formatting.clang_format,
@@ -31,11 +31,12 @@ null_ls.setup({
 
         -- Markdown formatting
         formatting.markdown_toc,
-        formatting.markdownlint,
         formatting.cbfmt,
+        formatting.markdownlint,
+        diagnostics.markdownlint,
 
         -- Shell formatting
-        formatting.shfmt,
+        formatting.shfmt.with({ extra_args = { "--indent", "4" } }), -- Tab to space
         diagnostics.shellcheck,
 
         -- JSON formatting
@@ -46,6 +47,7 @@ null_ls.setup({
 
         -- YAML formatting
         formatting.yamlfmt,
+        diagnostics.yamllint,
     },
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)

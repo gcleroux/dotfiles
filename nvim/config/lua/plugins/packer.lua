@@ -49,11 +49,6 @@ return packer.startup(function(use)
     use("akinsho/bufferline.nvim") -- Lua bufferline
     use("moll/vim-bbye") -- Closing windows without messing up the layout
 
-    -- use("akinsho/toggleterm.nvim") -- Not sure I will keep the toggle terminal
-
-    -- Debugger
-    use("mfussenegger/nvim-dap")
-
     -- Tree-sitter
     use({
         "nvim-treesitter/nvim-treesitter", -- Neovim LSP server
@@ -72,6 +67,7 @@ return packer.startup(function(use)
     -- Color schemes
     use("navarasu/onedark.nvim") -- Atom OneDark theme
     use("EdenEast/nightfox.nvim") -- Nightfox theme
+    use("bluz71/vim-moonfly-colors")
 
     -- Git plugins
     use("lewis6991/gitsigns.nvim") -- Git annotations in the gutter
@@ -99,6 +95,9 @@ return packer.startup(function(use)
     use("jayp0521/mason-null-ls.nvim") -- Integrates Mason with Null-ls
     use("neovim/nvim-lspconfig") -- enable LSP
     use("b0o/schemastore.nvim") -- jsonls schemas for LSP server
+
+    -- Debugger
+    use("mfussenegger/nvim-dap")
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
