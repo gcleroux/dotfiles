@@ -26,7 +26,7 @@ null_ls.setup({
         diagnostics.luacheck,
 
         -- C/C++/CS/CUDA formatting
-        formatting.clang_format,
+        formatting.clang_format.with({ extra_args = { "--style", '"{BasedOnStyle: llvm, IndentWidth: 4}"' } }),
         diagnostics.cpplint,
 
         -- Markdown formatting

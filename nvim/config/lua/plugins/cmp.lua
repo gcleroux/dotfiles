@@ -3,16 +3,47 @@ if not cmp_status_ok then
     return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
+local snip_status_ok, snippy = pcall(require, "snippy")
 if not snip_status_ok then
     return
 end
 
--- Load snippets from rafamadriz/friendly-snippets
-require("luasnip.loaders.from_vscode").lazy_load()
+local converter_status_ok, snippet_converter = pcall(require, "snippet_converter")
+if not converter_status_ok then
+    vim.notify("Plugin snippet_converter is missing")
+    return
+end
 
--- Load custom snippets
-require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
+-- Create converter templates, separating makes it easier to debug with :ConvertSnippets
+local friendly_snippets = {
+    sources = {
+        vscode = {
+            "./friendly-snippets/snippets",
+        },
+    },
+    output = {
+        snipmate = {
+            vim.fn.stdpath("data") .. "/site/snippets",
+        },
+    },
+}
+local custom_snippets = {
+    sources = {
+        vscode = {
+            vim.fn.stdpath("config") .. "./snippets",
+        },
+    },
+    output = {
+        snipmate = {
+            vim.fn.stdpath("data") .. "/site/snippets",
+        },
+    },
+}
+
+-- Converting snippets to snippy format
+snippet_converter.setup({
+    templates = { friendly_snippets, custom_snippets },
+})
 
 local has_words_before = function()
     -- TODO Switch to table.unpack after upgrading to debian 12 (if lua version >= 5.2)
@@ -53,16 +84,21 @@ local kind_icons = {
 cmp.setup({
     snippet = {
         expand = function(args)
-            luasnip.lsp_expand(args.body) -- For `luasnip` users.
+            snippy.expand_snippet(args.body) -- For `luasnip` users.
         end,
     },
     mapping = {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then -- when cursor is at end of word
+                if snippy.can_jump(1) then
+                    -- Advance takes over cmp-completions in snippets
+                    snippy.next()
+                else
+                    cmp.select_next_item()
+                end
+            elseif snippy.can_expand_or_advance() then
+                snippy.expand_or_advance()
+            elseif has_words_before() then
                 cmp.complete()
             else
                 fallback()
@@ -72,18 +108,36 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            elseif snippy.can_jump(-1) then
+                snippy.previous()
             else
                 fallback()
             end
         end, { "i", "s" }),
 
+        -- ["<C-j>"] = cmp.mapping.select_next_item(),
+        -- ["<C-k>"] = cmp.mapping.select_prev_item(),
+
+        -- ["<C-j>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end),
+        -- ["<C-k>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end),
+
         ["<CR>"] = cmp.mapping.confirm({ select = false }), -- If none selected, fallback to Enter
         ["<C-a>"] = cmp.mapping.complete(), -- Every cmp entry
 
-        ["<C-j>"] = cmp.mapping.scroll_docs(4),
-        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+        ["<Up>"] = cmp.mapping.scroll_docs(4),
+        ["<Down>"] = cmp.mapping.scroll_docs(-4),
 
         ["<C-e>"] = cmp.mapping.abort(),
     },
@@ -103,7 +157,7 @@ cmp.setup({
     },
     sources = {
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        { name = "snippy" },
         { name = "buffer" },
         { name = "path" },
     },
