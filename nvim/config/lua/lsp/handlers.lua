@@ -60,11 +60,8 @@ local function lsp_highlight_document(client)
     end
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(client)
     lsp_highlight_document(client)
-
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

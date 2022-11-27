@@ -14,9 +14,10 @@ require("luasnip.loaders.from_vscode").lazy_load()
 -- Load custom snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
 
-local check_backspace = function()
-    local col = vim.fn.col(".") - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+local has_words_before = function()
+    -- TODO Switch to table.unpack after upgrading to debian 12 (if lua version >= 5.2)
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 --   פּ ﯟ   some other good icons
@@ -56,40 +57,18 @@ cmp.setup({
         end,
     },
     mapping = {
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<Down>"] = cmp.mapping.select_next_item(),
-        ["<Up>"] = cmp.mapping.select_prev_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        }),
-        -- Accept currently selected item. If none selected, `select` first item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
-            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
             if cmp.visible() then
-                local entry = cmp.get_selected_entry()
-                if not entry then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                end
-                cmp.confirm()
-            elseif luasnip.expandable() then
-                luasnip.expand()
+                cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
+            elseif has_words_before() then -- when cursor is at end of word
+                cmp.complete()
             else
                 fallback()
             end
         end, { "i", "s" }),
 
-        -- Super Tab keymaps
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -98,17 +77,22 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {
-            "i",
-            "s",
-        }),
+        end, { "i", "s" }),
+
+        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- If none selected, fallback to Enter
+        ["<C-a>"] = cmp.mapping.complete(), -- Every cmp entry
+
+        ["<C-j>"] = cmp.mapping.scroll_docs(4),
+        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+
+        ["<C-e>"] = cmp.mapping.abort(),
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
             vim_item.menu = ({
                 luasnip = "[Snippet]",
                 buffer = "[Buffer]",
@@ -122,10 +106,6 @@ cmp.setup({
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-    },
-    confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
     },
     windowdocumentation = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
