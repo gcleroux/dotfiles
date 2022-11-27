@@ -48,6 +48,11 @@ lspconfig.sumneko_lua.setup({
         },
     },
 })
+-- CPP LSP config
+lspconfig.clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
 -- JSON LSP config
 lspconfig.jsonls.setup({
