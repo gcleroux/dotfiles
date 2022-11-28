@@ -15,21 +15,10 @@ if not converter_status_ok then
 end
 
 -- Create converter templates, separating makes it easier to debug with :ConvertSnippets
-local friendly_snippets = {
+local snippets_template = {
     sources = {
         vscode = {
             "./friendly-snippets/snippets",
-        },
-    },
-    output = {
-        snipmate = {
-            vim.fn.stdpath("data") .. "/site/snippets",
-        },
-    },
-}
-local custom_snippets = {
-    sources = {
-        vscode = {
             vim.fn.stdpath("config") .. "./snippets",
         },
     },
@@ -42,7 +31,7 @@ local custom_snippets = {
 
 -- Converting snippets to snippy format
 snippet_converter.setup({
-    templates = { friendly_snippets, custom_snippets },
+    templates = { snippets_template },
 })
 
 local has_words_before = function()
@@ -115,29 +104,11 @@ cmp.setup({
             end
         end, { "i", "s" }),
 
-        -- ["<C-j>"] = cmp.mapping.select_next_item(),
-        -- ["<C-k>"] = cmp.mapping.select_prev_item(),
-
-        -- ["<C-j>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_next_item()
-        --     else
-        --         fallback()
-        --     end
-        -- end),
-        -- ["<C-k>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_prev_item()
-        --     else
-        --         fallback()
-        --     end
-        -- end),
-
         ["<CR>"] = cmp.mapping.confirm({ select = false }), -- If none selected, fallback to Enter
         ["<C-a>"] = cmp.mapping.complete(), -- Every cmp entry
 
-        ["<Up>"] = cmp.mapping.scroll_docs(4),
-        ["<Down>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-j>"] = cmp.mapping.scroll_docs(4),
+        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
 
         ["<C-e>"] = cmp.mapping.abort(),
     },
