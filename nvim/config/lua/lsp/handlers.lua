@@ -53,6 +53,7 @@ local function lsp_highlight_document(client)
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        autocmd snip_comp_done CompleteDone * lua require 'snippy'.complete_done()
       augroup END
     ]]       ,
             false

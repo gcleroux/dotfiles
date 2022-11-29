@@ -19,7 +19,7 @@ null_ls.setup({
         formatting.isort,
         formatting.black.with({ extra_args = { "--fast", "--line-length", "88" } }),
         diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),
-        diagnostics.pylint,
+        diagnostics.pylint.with({ extra_args = { "--rcfile", ".pylintrc" } }),
 
         -- Lua formatting
         formatting.stylua,

@@ -7,20 +7,12 @@ end
 local on_attach = require("lsp.handlers").on_attach
 local capabilities = require("lsp.handlers").capabilities
 
--- Python LSP config
-lspconfig.pyright.setup({
+-- Python LSP
+lspconfig.jedi_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = {
-        python = {
-            analysis = {
-                typeCheckingMode = "off",
-            },
-        },
-    },
 })
-
--- Lua LSP config
+-- Lua LSP
 lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -48,13 +40,7 @@ lspconfig.sumneko_lua.setup({
         },
     },
 })
--- CPP LSP config
-lspconfig.clangd.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
--- JSON LSP config
+-- JSON LSP
 lspconfig.jsonls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -64,4 +50,46 @@ lspconfig.jsonls.setup({
             validate = { enable = true },
         },
     },
+})
+-- Docker LSP
+lspconfig.dockerls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+-- YAML LSP
+lspconfig.yamlls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            },
+        },
+    },
+})
+-- CPP LSP
+lspconfig.clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+-- Markdown LSP
+lspconfig.marksman.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+-- Bash LSP
+lspconfig.bashls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+-- HTML LSP
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.taplo.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })

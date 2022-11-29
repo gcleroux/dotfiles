@@ -1,6 +1,8 @@
 -- plugins
 require("plugins.packer")
 
+require("plugins.snippy")
+
 -- cmp config
 require("plugins.cmp")
 

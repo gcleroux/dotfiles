@@ -8,38 +8,6 @@ if not snip_status_ok then
     return
 end
 
-local converter_status_ok, snippet_converter = pcall(require, "snippet_converter")
-if not converter_status_ok then
-    vim.notify("Plugin snippet_converter is missing")
-    return
-end
-
--- Create converter templates, separating makes it easier to debug with :ConvertSnippets
-local snippets_template = {
-    sources = {
-        vscode = {
-            "./friendly-snippets/snippets",
-            vim.fn.stdpath("config") .. "./snippets",
-        },
-    },
-    output = {
-        snipmate = {
-            vim.fn.stdpath("data") .. "/site/snippets",
-        },
-    },
-}
-
--- Converting snippets to snippy format
-snippet_converter.setup({
-    templates = { snippets_template },
-})
-
-local has_words_before = function()
-    -- TODO Switch to table.unpack after upgrading to debian 12 (if lua version >= 5.2)
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 --   פּ ﯟ   some other good icons
 local kind_icons = {
     Text = "",
@@ -70,10 +38,16 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
+local has_words_before = function()
+    -- TODO Switch to table.unpack after upgrading to debian 12 (if lua version >= 5.2)
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 cmp.setup({
     snippet = {
         expand = function(args)
-            snippy.expand_snippet(args.body) -- For `luasnip` users.
+            snippy.expand_snippet(args.body)
         end,
     },
     mapping = {

@@ -78,8 +78,6 @@ return packer.startup(function(use)
 
     -- snippets
     use("dcampos/nvim-snippy")
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-    use("smjonas/snippet-converter.nvim") -- Converts snippets format to nvim-snippy format
 
     -- cmp plugins
     use("hrsh7th/nvim-cmp") -- The completion plugin

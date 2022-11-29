@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 neogen.setup({
-    snippet_engine = "luasnip",
+    snippet_engine = "snippy",
     enabled = true,
     languages = {
         lua = {
