@@ -19,9 +19,8 @@ mason_null_ls.setup({
         "black",
         "clang-format",
         "isort",
-        "jq",
+        "prettierd",
         "shfmt",
         "stylua",
-        "yamlfmt",
     },
 })

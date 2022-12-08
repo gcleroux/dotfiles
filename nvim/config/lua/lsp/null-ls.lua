@@ -13,40 +13,35 @@ null_ls.setup({
     sources = {
         -- Editor wide linter/formatting
         diagnostics.codespell,
-        diagnostics.proselint,
 
-        -- Python formatting
+        -- Python tools
         formatting.isort,
         formatting.black.with({ extra_args = { "--fast", "--line-length", "88" } }),
         diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),
-        diagnostics.pylint.with({ extra_args = { "--rcfile", ".pylintrc" } }),
+        diagnostics.pylint.with({ extra_args = { "--disable", "F0401,C0301" } }),
 
-        -- Lua formatting
+        -- Lua tools
         formatting.stylua,
         diagnostics.luacheck,
 
-        -- C/C++/CS/CUDA formatting
+        -- C/C++/CS/CUDA tools
         formatting.clang_format.with({ extra_args = { "--style", '"{BasedOnStyle: llvm, IndentWidth: 4}"' } }),
         diagnostics.cpplint,
 
-        -- Markdown formatting
+        -- Markdown tools
         formatting.markdown_toc,
         formatting.cbfmt,
-        formatting.markdownlint,
         diagnostics.markdownlint,
 
-        -- Shell formatting
+        -- Shell tools
         formatting.shfmt.with({ extra_args = { "--indent", "4" } }), -- Tab to space
         diagnostics.shellcheck,
 
-        -- JSON formatting
-        formatting.jq,
-
-        -- Dockerfile
+        -- Dockerfile tools
         diagnostics.hadolint,
 
-        -- YAML formatting
-        formatting.yamlfmt,
+        -- JS, TS, JSON, YAML, HTML, CSS, Mardown, etc. tools
+        formatting.prettierd,
         diagnostics.yamllint,
     },
     -- you can reuse a shared lspconfig on_attach callback here
