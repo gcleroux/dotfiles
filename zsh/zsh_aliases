@@ -16,3 +16,4 @@ alias cat='batcat -p'
 
 # Kubectl is not installed locally and only through minikube
 alias kubectl='minikube kubectl --'
+alias lzg='lazygit'
