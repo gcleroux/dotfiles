@@ -12,8 +12,12 @@ icons.setup({
         dockerfile = {
             icon = "",
             color = "#0db7ed",
-            cterm_color = "39",
             name = "Dockerfile",
+        },
+        Makefile = {
+            icon = "",
+            color = "#428850",
+            name = "Makefile",
         },
     },
     -- globally enable different highlight colors per icon (default to true)
