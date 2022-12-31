@@ -1,0 +1,13 @@
+{
+    "pcall_status": {
+        "prefix": "status_ok",
+        "body": [
+            "local ${1}_status_ok, ${2:_} = pcall(require, ${3:_})",
+            "if not ${1}_status_ok then",
+            "\tvim.notify(\"Plugin ${2:_} is missing\")",
+            "\treturn",
+            "end"
+        ],
+        "description": "Create a status_ok pcall for module import"
+    }
+}

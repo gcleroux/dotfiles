@@ -77,16 +77,16 @@ return packer.startup(function(use)
     use("lambdalisue/suda.vim") -- Open/write files as root
 
     -- snippets
-    use("dcampos/nvim-snippy")
+    use("L3MON4D3/LuaSnip")
+    use("rafamadriz/friendly-snippets")
 
     -- cmp plugins
     use("hrsh7th/nvim-cmp") -- The completion plugin
     use("hrsh7th/cmp-buffer") -- buffer completions
     use("hrsh7th/cmp-path") -- path completions
     use("hrsh7th/cmp-cmdline") -- cmdline completions
-
-    use("dcampos/cmp-snippy") -- Integrates snippy to nvim-cmp
     use("hrsh7th/cmp-nvim-lsp") -- LSP completions
+    use("saadparwaiz1/cmp_luasnip")
 
     -- LSP
     use("williamboman/mason.nvim") -- LSP plugin manager
