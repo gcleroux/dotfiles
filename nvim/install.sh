@@ -34,8 +34,8 @@ prompt() {
 nvim_install() {
     # Installing neovim from bin
     NVIM_VERSION=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v*([^"]+)".*/\1/')
-    curl -LO "https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/nvim-linux64.deb"
-    curl -LO "https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/nvim-linux64.deb.sha256sum"
+    curl -LO "https://github.com/neovim/neovim/releases/download/$NVIM_VERSION/nvim-linux64.deb"
+    curl -LO "https://github.com/neovim/neovim/releases/download/$NVIM_VERSION/nvim-linux64.deb.sha256sum"
     if [ "$(sha256sum -c nvim-linux64.deb.sha256sum)" != "nvim-linux64.deb: OK" ]; then
         prompt -e "\n Neovim checksum failed."
         exit 1
@@ -52,32 +52,8 @@ if [ "$UID" != "$ROOT_UID" ]; then
     exit 1
 fi
 
-# Updating repo
-sudo apt update -y
-
-# Installing build deps
-sudo apt install -y ripgrep curl luarocks
-
-# Installing node 18.x
-curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
-
 # Installing neovim
 prompt -i "\nInstalling Neovim bin from source.\n"
 nvim_install
 
-# Installing add-ons
-read -rp "
-Do you wish to install neovim's add-ons? [Y/n] " yn
-
-case $yn in
-# Default to yes
-[Yy]* | "")
-    cd ./add-ons || exit 1
-    bash ./install.sh
-    ;;
-*)
-    prompt -w "\nNeovim add-ons will not be installed.\n"
-    ;;
-esac
-
-prompt -s "Neovim was installed sucessfully!"
+prompt -s "Neovim was installed successfully!"
