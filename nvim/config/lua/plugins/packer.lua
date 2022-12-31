@@ -133,6 +133,8 @@ return packer.startup(function(use)
     -- Atom like multiple cursors
     use("mg979/vim-visual-multi") -- Atom multi cursor in vim
 
+    use("lukas-reineke/indent-blankline.nvim")
+
     -- install without yarn or npm
     use({
         "iamcco/markdown-preview.nvim", -- Preview markdown files in web browser
