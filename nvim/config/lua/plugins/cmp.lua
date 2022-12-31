@@ -53,12 +53,9 @@ cmp.setup({
     mapping = {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-                if snippy.can_jump(1) then
-                    -- Advance takes over cmp-completions in snippets
-                    snippy.next()
-                else
-                    cmp.select_next_item()
-                end
+                cmp.select_next_item()
+            elseif snippy.can_jump(1) then
+                snippy.next()
             elseif snippy.can_expand_or_advance() then
                 snippy.expand_or_advance()
             elseif has_words_before() then
