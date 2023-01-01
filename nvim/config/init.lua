@@ -1,3 +1,6 @@
+-- Plugins config
+require("plugins")
+
 -- Setup global config
 require("globals")
 
@@ -6,9 +9,6 @@ require("themes.onenord")
 
 -- Set up the UI
 require("ui")
-
--- Plugins config
-require("plugins")
 
 -- Debuggers config
 require("debuggers")
