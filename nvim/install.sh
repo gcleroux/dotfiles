@@ -57,3 +57,9 @@ prompt -i "\nInstalling Neovim bin from source.\n"
 nvim_install
 
 prompt -s "Neovim was installed successfully!"
+
+# Copying config files to XDG_CONFIG_HOME
+sudo -u "$SUDO_USER" ln -sf "$(pwd)"/config ${XDG_CONFIG_HOME:-~/.config}/nvim
+
+# Installing Packer for nvim plugins
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
